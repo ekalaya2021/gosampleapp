@@ -10,13 +10,17 @@ pipeline {
 
         stage('Build') {
             steps{
-                dockerImage = docker.build("ekalaya/gosampleapp:latest")                
+                script{
+                    dockerImage = docker.build("ekalaya/gosampleapp:latest")                
+                }
             }
         }
         stage('Publish') {
             steps{
-                withDockerRegistry([ credentialsId: "dockerhubkred", url: "https://hub.docker.com" ]) {
-                    dockerImage.push()
+                script{
+                    withDockerRegistry([ credentialsId: "dockerhubkred", url: "https://hub.docker.com" ]) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
