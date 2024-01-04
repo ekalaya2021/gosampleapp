@@ -1,6 +1,6 @@
 pipeline {
     agent {
-         label 'ec2-epus-ec2'
+         label 'ec2-epus'
     }
 
     stages {
