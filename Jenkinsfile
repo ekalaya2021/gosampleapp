@@ -17,7 +17,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Cleanup image..'
+                sh 'docker system prune --all --force'
             }
         }
         stage('Deploy') {
