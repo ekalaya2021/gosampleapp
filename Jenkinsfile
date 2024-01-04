@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+         label 'ec2-epus-ec2'
+    }
 
     stages {
         stage('Repo pulling') {
