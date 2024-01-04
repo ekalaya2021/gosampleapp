@@ -12,7 +12,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Calling GIT_CREDENTIALS') {
+        stage('Debug GIT_CREDENTIALS') {
             steps {
                 echo "username is $GIT_CREDENTIALS_USR"
                 echo "password is $GIT_CREDENTIALS_PSW"
@@ -40,7 +40,6 @@ pipeline {
                   sh "git clone https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/ekalaya2021/argo-test.git"
                   sh "cd argo-test"
                   dir('argo-test') {
-                    // sh "git remote set-url origin https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/project.git"
                     sh "sed -i 's/gosampleapp:.*/gosampleapp:${BUILD_NUMBER}/g' deployment.yaml"
                     sh "git config user.email $GIT_CREDENTIALS_USR@gmail.com"
                     sh "git config user.name $GIT_CREDENTIALS_USR"
