@@ -24,9 +24,9 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Cleaning up') {
             steps {
-                echo 'Deploying....'
+                echo 'Cleaning up....'
                 sh 'docker system prune --all --force' 
             }
         }
