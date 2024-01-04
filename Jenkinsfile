@@ -11,10 +11,10 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Calling MY_CREDENTIALS') {
+        stage('Calling GIT_CREDENTIALS') {
                     steps {
-                        echo "username is $MY_CREDENTIALS_USR"
-                        echo "password is $MY_CREDENTIALS_PSW"
+                        echo "username is $GIT_CREDENTIALS_USR"
+                        echo "password is $GIT_CREDENTIALS_PSW"
                         }
         }
         stage('Build') {
