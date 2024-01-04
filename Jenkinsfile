@@ -9,11 +9,15 @@ pipeline {
         }
 
         stage('Build') {
-            dockerImage = docker.build("ekalaya/gosampleapp:latest")                
+            steps{
+                dockerImage = docker.build("ekalaya/gosampleapp:latest")                
+            }
         }
         stage('Publish') {
-            withDockerRegistry([ credentialsId: "dockerhubkred", url: "https://hub.docker.com" ]) {
-                dockerImage.push()
+            steps{
+                withDockerRegistry([ credentialsId: "dockerhubkred", url: "https://hub.docker.com" ]) {
+                    dockerImage.push()
+                }
             }
         }
         stage('Test') {
