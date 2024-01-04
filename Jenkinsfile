@@ -37,7 +37,7 @@ pipeline {
         stage('Update Manifest') {
               steps {
                   sh "rm -rf argocd-test"
-                  sh "git clone https://github.com/ekalaya2021/argocd-test.git"
+                  sh "git clone https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/ekalaya2021/argocd-test.git"
                   sh "cd argocd-test"
                   dir('argocd-test') {
                     sh "git remote set-url origin https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/project.git"
