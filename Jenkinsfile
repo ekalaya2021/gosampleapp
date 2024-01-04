@@ -18,7 +18,7 @@ pipeline {
         stage('Publish') {
             steps{
                 script{
-                    withDockerRegistry([ credentialsId: "dockerhubcred", url: "registry-1.docker.io" ]) {
+                    withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
                         dockerImage.push()
                     }
                 }
@@ -27,6 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'docker system prune --all --force' 
             }
         }
     }
