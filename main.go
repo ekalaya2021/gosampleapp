@@ -4,11 +4,13 @@ import (
     "html"
     "log"
     "net/http"
+    "strings"
 )
 
 func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, %q apa khabar", html.EscapeString(r.URL.Path))
+        res := strings.TrimPrefix("%q","/")
+        fmt.Fprintf(w, "Hello, %res apa khabar", html.EscapeString(r.URL.Path))
     })
 
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request){
