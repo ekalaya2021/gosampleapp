@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    dockerImage = docker.build("ekalaya/gosampleapp:latest")                
+                    dockerImage = docker.build("ekalaya/gosampleapp:$BUILD_NUMBER")                
                 }
             }
         }
