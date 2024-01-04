@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-         label 'ec2-epus'
-    }
+    // agent {
+    //      label 'ec2-epus'
+    // }
+    agent any
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
     }
@@ -12,10 +13,10 @@ pipeline {
             }
         }
         stage('Calling GIT_CREDENTIALS') {
-                    steps {
-                        echo "username is $GIT_CREDENTIALS_USR"
-                        echo "password is $GIT_CREDENTIALS_PSW"
-                        }
+            steps {
+                echo "username is $GIT_CREDENTIALS_USR"
+                echo "password is $GIT_CREDENTIALS_PSW"
+            }
         }
         stage('Build') {
             steps{
@@ -45,7 +46,7 @@ pipeline {
                     sh "git config user.name ekalaya2021"
                     sh "git add ${WORKSPACE}/argocd-test/deployment.yaml"
                     sh "git commit -m 'Update image version to: ${BUILD_NUMBER}'"
-                    sh "git push https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/argocd-test.git HEAD:master -f"
+                    // sh "git push https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/argocd-test.git HEAD:master -f"
                   }
               }
             }        
