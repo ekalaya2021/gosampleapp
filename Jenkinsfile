@@ -35,7 +35,6 @@ pipeline {
         }
         stage('Update Manifest') {
               steps {
-                withCredentials([usernamePassword(credentialsId: 'GitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                   sh "rm -rf argocd-test"
                   sh "git clone https://github.com/ekalaya2021/argocd-test.git"
                   sh "cd argocd-test"
@@ -45,9 +44,7 @@ pipeline {
                     sh "git config user.name ekalaya2021"
                     sh "git add ${WORKSPACE}/argocd-test/deployment.yaml"
                     sh "git commit -m 'Update image version to: ${BUILD_NUMBER}'"
-                    sh"git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/ekalaya2021/argocd-test.git HEAD:master -f"
                   }
-                }
               }
             }        
         stage('Cleaning up') {
