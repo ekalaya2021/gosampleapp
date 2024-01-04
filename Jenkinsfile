@@ -42,9 +42,9 @@ pipeline {
                   dir('argo-test') {
                     // sh "git remote set-url origin https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/project.git"
                     sh "sed -i 's/gosampleapp:.*/gosampleapp:${BUILD_NUMBER}/g' deployment.yaml"
-                    sh "git config user.email ekalaya2021@gmail.com"
-                    sh "git config user.name ekalaya2021"
-                    sh "git add ${WORKSPACE}/argocd-test/deployment.yaml"
+                    sh "git config user.email $GIT_CREDENTIALS_USR@gmail.com"
+                    sh "git config user.name $GIT_CREDENTIALS_USR"
+                    sh "git add ${WORKSPACE}/argo-test/deployment.yaml"
                     sh "git commit -m 'Update image version to: ${BUILD_NUMBER}'"
                     sh "git push https://$GIT_CREDENTIALS_USR:$GIT_CREDENTIALS_PSW@github.com/$GIT_CREDENTIALS_USR/argo-test.git HEAD:master -f"
                   }
