@@ -18,7 +18,7 @@ pipeline {
         stage('Publish') {
             steps{
                 script{
-                    withDockerRegistry([ credentialsId: "dockerhubkred", url: "https://hub.docker.com" ]) {
+                    withDockerRegistry([ credentialsId: "dockerhubcred", url: "https://hub.docker.com" ]) {
                         dockerImage.push()
                     }
                 }
