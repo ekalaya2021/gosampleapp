@@ -2,7 +2,9 @@ pipeline {
     agent {
          label 'ec2-epus'
     }
-
+    environment {
+        GIT_CREDENTIALS = credentials('GitHubCredentials')
+    }
     stages {
         stage('Repo pulling') {
             steps {
@@ -38,7 +40,7 @@ pipeline {
                     sh "git config user.name ekalaya2021"
                     sh "git add ${WORKSPACE}/argocd-test/deployment.yaml"
                     sh "git commit -m 'Update image version to: ${BUILD_NUMBER}'"
-                    sh"git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/ekalaya2021/argocd-test.git HEAD:master -f"
+                    sh"git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/ekalaya2021/argocd-test.git HEAD:master -f"
                   }
                 }
               }
