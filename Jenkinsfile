@@ -58,7 +58,7 @@ pipeline {
         stage('Send notification to mattermost'){
             steps{
                 sh """
-                curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Build #${BUILD_NUMBER} has been succeeded"}' https://chat.infokes.id/hooks/ojijxc5ncibijrpcfzzpanh4nc
+                curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Build #${BUILD_NUMBER} has been succeeded :white_check_mark: "}' https://chat.infokes.id/hooks/ojijxc5ncibijrpcfzzpanh4nc
                 """
             }
         }
