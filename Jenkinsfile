@@ -55,5 +55,12 @@ pipeline {
                 sh 'docker system prune --all --force' 
             }
         }
+        stage('Send notification to mattermost'){
+            steps{
+                sh """
+                curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Build #${BUILD_NUMBER} has been succeeded"}' https://chat.infokes.id/hooks/ojijxc5ncibijrpcfzzpanh4nc
+                """
+            }
+        }
     }
 }
