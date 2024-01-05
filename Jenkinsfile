@@ -1,7 +1,7 @@
 pipeline {
     agent {
          label 'ec2-epus'
-    }
+    } 
     // agent any
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
