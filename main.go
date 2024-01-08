@@ -10,7 +10,7 @@ import (
 func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         res := strings.TrimPrefix(html.EscapeString(r.URL.Path),"/")
-        fmt.Fprintf(w, "Hello %q ", res)
+        fmt.Fprintf(w, "Annyeong haseyo %q ", res)
     })
 
     log.Fatal(http.ListenAndServe(":8081", nil))
