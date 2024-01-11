@@ -1,6 +1,6 @@
 pipeline {
     agent {
-         label 'ec2-fleet'
+         label 'ec2-epus'
     } 
     // agent any 
     environment {
