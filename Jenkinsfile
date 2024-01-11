@@ -2,7 +2,7 @@ pipeline {
     agent {
          label 'ec2-fleet'
     } 
-    // agent any
+    // agent any 
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
     }
