@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{
                     // dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")
-                    dockerImage = docker.build("gosampleapp")                
+                    dockerImage = docker.build("infokes-ecr/gosampleapp")                
                 }
             }
         }
