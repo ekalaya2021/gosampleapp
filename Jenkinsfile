@@ -1,10 +1,14 @@
 pipeline {
-    agent {
-         label 'ec2-fleet'
-    } 
-    // agent any 
+    // agent {
+    //      label 'ec2-fleet'
+    // } 
+    agent any 
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
+        AWS_ACCOUNT_ID="421567267553"
+        AWS_DEFAULT_REGION="ap-southeast-3" 
+        IMAGE_REPO_NAME=" infokes-ecr"        
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
     stages {
         stage('Repo pulling') {
