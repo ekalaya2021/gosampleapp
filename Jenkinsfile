@@ -25,16 +25,17 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")                
+                    // dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")
+                    dockerImage = docker.build("gosampleapp")                
                 }
             }
         }
         stage('Publish') {
             steps{
                 script{
-                    withDockerRegistry([credentialsId:"infokes-admin",url:"https://421567267553.dkr.ecr.ap-southeast-3.amazonaws.com"]){
+                    docker.withRegistry("https://421567267553.dkr.ecr.ap-southeast-3.amazonaws.com","ecr:ap-southeast-3:infokes-admin"){
                     // withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
-                        dockerImage.push()
+                        dockerImage.push("$BUILD_NUMBER")
                     }
                 }
             }
