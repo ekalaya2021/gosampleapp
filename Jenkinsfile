@@ -31,7 +31,7 @@ pipeline {
                 script{
                     docker.withRegistry("https://421567267553.dkr.ecr.ap-southeast-3.amazonaws.com","ecr:ap-southeast-3:infokes-admin"){
                     // withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
-                        docker.image("infokes-ecr").push("$BUILD_NUMBER")
+                        docker.image("gosampleapp").push("$BUILD_NUMBER")
                         // dockerImage.push("$BUILD_NUMBER")
                         //dockerImage.push("latest")
                     }
