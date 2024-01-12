@@ -32,8 +32,9 @@ pipeline {
         stage('Publish') {
             steps{
                 script{
-                    withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
-                        dockerImage.push()
+                    withDockerRegistry('https://421567267553.dkr.ecr.ap-southeast-3.amazonaws.com/infokes-ecr','ecr:ap-southeast-3:infokes-admin'){
+                    // withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
+                        dockerImage.push("$BUILD_NUMBER")
                     }
                 }
             }
