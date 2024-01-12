@@ -1,8 +1,8 @@
 pipeline {
-    // agent {
-    //      label 'ec2-fleet'
-    // } 
-    agent any 
+    agent {
+         label 'ec2-fleet'
+    } 
+    // agent any 
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
     }
@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    // dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")                    
+                    // dockerImage = docker.build("ekalaya/gosampleapp:$BUILD_NUMBER")                    
                     dockerImage = docker.build("gosampleapp")                
                 }
             }
