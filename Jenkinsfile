@@ -5,10 +5,6 @@ pipeline {
     agent any 
     environment {
         GIT_CREDENTIALS = credentials('GitHubCredentials')
-        AWS_ACCOUNT_ID="421567267553"
-        AWS_DEFAULT_REGION="ap-southeast-3" 
-        IMAGE_REPO_NAME=" infokes-ecr"        
-        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
     stages {
         stage('Repo pulling') {
@@ -25,17 +21,18 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    // dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")
-                    dockerImage = docker.build("infokes-public-ecr/gosampleapp")                
+                    // dockerImage = docker.build("infokes-ecr/gosampleapp:$BUILD_NUMBER")                    
+                    dockerImage = docker.build("gosampleapp")                
                 }
             }
         }
         stage('Publish') {
             steps{
                 script{
-                    docker.withRegistry("https://public.ecr.aws/dev-infokes/infokes-public-ecr","ecr:ap-southeast-3:infokes-admin"){
+                    docker.withRegistry("https://421567267553.dkr.ecr.ap-southeast-3.amazonaws.com/infokes-ecr","ecr:ap-southeast-3:infokes-admin"){
                     // withDockerRegistry([ credentialsId: "dockerhubcred", url: "" ]) {
                         dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push("latest")
                     }
                 }
             }
